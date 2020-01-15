@@ -8,26 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		BC70D2FF23C4FC060086D345 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC70D2FE23C4FC060086D345 /* AppDelegate.swift */; };
-		BC70D30123C4FC060086D345 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = BC70D30023C4FC060086D345 /* GameScene.sks */; };
-		BC70D30323C4FC060086D345 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = BC70D30223C4FC060086D345 /* Actions.sks */; };
-		BC70D30523C4FC060086D345 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC70D30423C4FC060086D345 /* GameScene.swift */; };
 		BC70D30723C4FC060086D345 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC70D30623C4FC060086D345 /* GameViewController.swift */; };
 		BC70D30A23C4FC060086D345 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC70D30823C4FC060086D345 /* Main.storyboard */; };
 		BC70D30C23C4FC0C0086D345 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC70D30B23C4FC0C0086D345 /* Assets.xcassets */; };
 		BC70D30F23C4FC0C0086D345 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC70D30D23C4FC0C0086D345 /* LaunchScreen.storyboard */; };
+		BC70D33D23C7A4A80086D345 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC70D33C23C7A4A80086D345 /* GameScene.swift */; };
+		BC70D34123CA57080086D345 /* CoinDealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC70D34023CA57080086D345 /* CoinDealer.swift */; };
+		BC70D36723CD306E0086D345 /* TreeClicker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BC70D36523CD306E0086D345 /* TreeClicker.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		BC70D2FB23C4FC060086D345 /* TreeClicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TreeClicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC70D2FE23C4FC060086D345 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BC70D30023C4FC060086D345 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		BC70D30223C4FC060086D345 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
-		BC70D30423C4FC060086D345 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		BC70D30623C4FC060086D345 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		BC70D30923C4FC060086D345 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BC70D30B23C4FC0C0086D345 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BC70D30E23C4FC0C0086D345 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BC70D31023C4FC0C0086D345 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BC70D33C23C7A4A80086D345 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		BC70D34023CA57080086D345 /* CoinDealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDealer.swift; sourceTree = "<group>"; };
+		BC70D36623CD306E0086D345 /* TreeClicker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TreeClicker.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,17 +60,33 @@
 		BC70D2FD23C4FC060086D345 /* TreeClicker */ = {
 			isa = PBXGroup;
 			children = (
+				BC70D33F23C7A6DA0086D345 /* Scenes */,
+				BC70D33E23C7A6CE0086D345 /* ViewController */,
 				BC70D2FE23C4FC060086D345 /* AppDelegate.swift */,
-				BC70D30023C4FC060086D345 /* GameScene.sks */,
-				BC70D30223C4FC060086D345 /* Actions.sks */,
-				BC70D30423C4FC060086D345 /* GameScene.swift */,
-				BC70D30623C4FC060086D345 /* GameViewController.swift */,
+				BC70D34023CA57080086D345 /* CoinDealer.swift */,
 				BC70D30823C4FC060086D345 /* Main.storyboard */,
 				BC70D30B23C4FC0C0086D345 /* Assets.xcassets */,
 				BC70D30D23C4FC0C0086D345 /* LaunchScreen.storyboard */,
 				BC70D31023C4FC0C0086D345 /* Info.plist */,
+				BC70D36523CD306E0086D345 /* TreeClicker.xcdatamodeld */,
 			);
 			path = TreeClicker;
+			sourceTree = "<group>";
+		};
+		BC70D33E23C7A6CE0086D345 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				BC70D30623C4FC060086D345 /* GameViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		BC70D33F23C7A6DA0086D345 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				BC70D33C23C7A4A80086D345 /* GameScene.swift */,
+			);
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -132,10 +148,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC70D30A23C4FC060086D345 /* Main.storyboard in Resources */,
-				BC70D30123C4FC060086D345 /* GameScene.sks in Resources */,
 				BC70D30C23C4FC0C0086D345 /* Assets.xcassets in Resources */,
 				BC70D30F23C4FC0C0086D345 /* LaunchScreen.storyboard in Resources */,
-				BC70D30323C4FC060086D345 /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,8 +160,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC70D30523C4FC060086D345 /* GameScene.swift in Sources */,
 				BC70D30723C4FC060086D345 /* GameViewController.swift in Sources */,
+				BC70D36723CD306E0086D345 /* TreeClicker.xcdatamodeld in Sources */,
+				BC70D34123CA57080086D345 /* CoinDealer.swift in Sources */,
+				BC70D33D23C7A4A80086D345 /* GameScene.swift in Sources */,
 				BC70D2FF23C4FC060086D345 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -346,6 +362,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BC70D36523CD306E0086D345 /* TreeClicker.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BC70D36623CD306E0086D345 /* TreeClicker.xcdatamodel */,
+			);
+			currentVersion = BC70D36623CD306E0086D345 /* TreeClicker.xcdatamodel */;
+			path = TreeClicker.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = BC70D2F323C4FC060086D345 /* Project object */;
 }
