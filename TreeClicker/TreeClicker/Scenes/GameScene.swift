@@ -7,29 +7,31 @@
 //
 
 import SpriteKit
-
-import SpriteKit
 import GameplayKit
+import CoreData
 
 class GameScene: SKScene {
-    var score: Int = 0 {
-        didSet {
-            textCoins.text = "\(score)"
-        }
-    }
+    var score: Int = 0
     var textCoins = SKLabelNode(fontNamed: "Helvetica")
-    var backgroundScene = SKSpriteNode(imageNamed: "Scenario")
+    let backgroundScene = SKSpriteNode(imageNamed: "Scenario")
+    let coinMoney = SKSpriteNode(imageNamed: "CoinMoney")
+    let upgradeIcon = SKSpriteNode(imageNamed: "UpgradeIcon")
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
     
+    /**
+     Chama a função loadScene() para que todos os SKSpriteNodes sejam inicializados.
+     */
     override func didMove(to view: SKView) {
         loadScene()
-       
         }
     
+    /**
+    Carrega todos os SKSpriteNodes na tela, em seus respectivos lugares (cria a cena).
+    */
     func loadScene(){
         
-        textCoins.text = "0"
+        textCoins.text = "\(score)"
         textCoins.zPosition = 100
         textCoins.fontColor = .black
         textCoins.fontSize = 40
@@ -42,29 +44,48 @@ class GameScene: SKScene {
         backgroundScene.position = CGPoint(x: frame.size.width/2, y: frame.size.height/2)
         addChild(backgroundScene)
         
+        coinMoney.zPosition = 101
+        coinMoney.position = CGPoint(x: frame.size.width/1.58 , y: frame.size.height/1.46)
+        addChild(coinMoney)
+        
+        upgradeIcon.name = "upgradeIcon"
+        upgradeIcon.zPosition = 105
+        upgradeIcon.position = CGPoint(x: frame.size.width/1.05 , y: frame.size.height/1.80)
+        addChild(upgradeIcon)
+        
     }
     
+    /**
+     Reconhece quando houve um toque no SKSpriteNode de "upgradeIcon" e realiza uma ação.
+     
+     Se houver um toque, ele irá abrir uma tela de upgrades (em produção).
+     Caso contrário, irá solicitar a classe CoinDealer para lidar com a ação.
+     
+     CoinDealer().coinReceiver(x: &self.score)
+     
+     Parâmetros:
+     x : recebe o score, que é inicializado como "0" no começo do aplicativo. (não pode ser nil).
+     
+     Retorna:
+     um resultado para a variável coins, que é armazenada em score e assim mostrada em tela.
+     
+     */
       override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        score+=1
+        let touch = touches.first
+        let touchLocation = touch!.location(in: self)
+            if upgradeIcon.contains(touchLocation) {
+                // Abre tela de upgrades
+        }
+            else{
+                var coins = CoinDealer().coinReceiver(x: &self.score)
+                score = coins
+                textCoins.text = "\(score)"
+        }
       
     }
     
     
         
-//        // Create shape node to use during mouse interaction
-//        let w = (self.size.width + self.size.height) * 0.05
-//        self.spinnyNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w * 0.3)
-//
-//        if let spinnyNode = self.spinnyNode {
-//            spinnyNode.lineWidth = 2.5
-//
-//            spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
-//            spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
-//                                              SKAction.fadeOut(withDuration: 0.5),
-//                                              SKAction.removeFromParent()]))
-//        }
-//    }
-//
 //
 //    func touchDown(atPoint pos : CGPoint) {
 //        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
