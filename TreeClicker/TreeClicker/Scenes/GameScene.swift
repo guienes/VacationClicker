@@ -11,6 +11,7 @@ import GameplayKit
 import CoreData
 
 class GameScene: SKScene {
+//    var gameTableView = UpgradesTableView()
     var score: Int = 0
     var textCoins = SKLabelNode(fontNamed: "Helvetica")
     let backgroundScene = SKSpriteNode(imageNamed: "Scenario")
@@ -19,11 +20,25 @@ class GameScene: SKScene {
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
     
+    // cria a tela de upgrades em si
+    lazy var upgradeTela: [SKSpriteNode] = Upgrades().upgradeScreenAppear()
+    
+    // pega os valores dos produtos da loja de upgrades
+    lazy var upgradeValues: [SKLabelNode] = Upgrades().upgradeValues()
+    
+    var checker: Bool = false
+    
     /**
      Chama a função loadScene() para que todos os SKSpriteNodes sejam inicializados.
      */
     override func didMove(to view: SKView) {
+//        gameTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+//        gameTableView.frame=CGRect(x:50,y:300,width:280,height:200)
+//        self.scene?.view?.addSubview(gameTableView)
+//        self.gameTableView.estimatedRowHeight = 20
+//        gameTableView.reloadData()
         loadScene()
+    
         }
     
     /**
@@ -73,13 +88,53 @@ class GameScene: SKScene {
       override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first
         let touchLocation = touch!.location(in: self)
-            if upgradeIcon.contains(touchLocation) {
-                // Abre tela de upgrades
+
+        //cicou no icone de upgrades
+        if upgradeIcon.contains(touchLocation) {
+            checker = true
+            for i in 0 ..< upgradeTela.count{
+                // Apresenta tela de upgrades
+                addChild(upgradeTela[i])
+            }
+            
+            for i in 0 ..< upgradeValues.count{
+                addChild(upgradeValues[i])
+            }
+//            if (upgradeValues.last?.contains(touchLocation) ?? nil)!{
+//                print("Funciona.. HMM...")
+//            }
         }
+        
+        if (upgradeValues.last?.contains(touchLocation))!{
+            var priceConverter = Int((upgradeValues[1].text ?? nil)!)
+            
+            var upgradeChecker = CoinDealer().buyUpgrades(valor: &score, compra: priceConverter ?? 0)
+                
+                score = upgradeChecker
+            textCoins.text = "\(score)"
+            
+        }
+        if checker == true && textCoins.contains(touchLocation){
+            for i in 0 ..< 2{
+                upgradeTela[i].removeFromParent()
+            }
+            
+            for i in 0 ..< upgradeValues.count{
+                upgradeValues[i].removeFromParent()
+            }
+            checker = false
+        }
+            
+            
+        else{
+            if checker == true{
+                "Faz nada"
+            }
             else{
                 var coins = CoinDealer().coinReceiver(x: &self.score)
                 score = coins
                 textCoins.text = "\(score)"
+            }
         }
       
     }

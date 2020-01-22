@@ -15,6 +15,9 @@
 		BC70D33D23C7A4A80086D345 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC70D33C23C7A4A80086D345 /* GameScene.swift */; };
 		BC70D34123CA57080086D345 /* CoinDealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC70D34023CA57080086D345 /* CoinDealer.swift */; };
 		BC70D36723CD306E0086D345 /* TreeClicker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BC70D36523CD306E0086D345 /* TreeClicker.xcdatamodeld */; };
+		BC70D36923D2B7A20086D345 /* Upgrade.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC70D36823D2B7A20086D345 /* Upgrade.swift */; };
+		BC70D36B23D2CC5C0086D345 /* UpgradesTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC70D36A23D2CC5C0086D345 /* UpgradesTableView.swift */; };
+		BC70D36D23D54E3A0086D345 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC70D36C23D54E3A0086D345 /* CustomCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,9 @@
 		BC70D33C23C7A4A80086D345 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		BC70D34023CA57080086D345 /* CoinDealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDealer.swift; sourceTree = "<group>"; };
 		BC70D36623CD306E0086D345 /* TreeClicker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TreeClicker.xcdatamodel; sourceTree = "<group>"; };
+		BC70D36823D2B7A20086D345 /* Upgrade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Upgrade.swift; sourceTree = "<group>"; };
+		BC70D36A23D2CC5C0086D345 /* UpgradesTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradesTableView.swift; sourceTree = "<group>"; };
+		BC70D36C23D54E3A0086D345 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,8 +68,9 @@
 			children = (
 				BC70D33F23C7A6DA0086D345 /* Scenes */,
 				BC70D33E23C7A6CE0086D345 /* ViewController */,
+				BC70D36E23D801B60086D345 /* Upgrade and Coins */,
+				BC70D36F23D801E70086D345 /* Working on.. */,
 				BC70D2FE23C4FC060086D345 /* AppDelegate.swift */,
-				BC70D34023CA57080086D345 /* CoinDealer.swift */,
 				BC70D30823C4FC060086D345 /* Main.storyboard */,
 				BC70D30B23C4FC0C0086D345 /* Assets.xcassets */,
 				BC70D30D23C4FC0C0086D345 /* LaunchScreen.storyboard */,
@@ -87,6 +94,24 @@
 				BC70D33C23C7A4A80086D345 /* GameScene.swift */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		BC70D36E23D801B60086D345 /* Upgrade and Coins */ = {
+			isa = PBXGroup;
+			children = (
+				BC70D36823D2B7A20086D345 /* Upgrade.swift */,
+				BC70D34023CA57080086D345 /* CoinDealer.swift */,
+			);
+			path = "Upgrade and Coins";
+			sourceTree = "<group>";
+		};
+		BC70D36F23D801E70086D345 /* Working on.. */ = {
+			isa = PBXGroup;
+			children = (
+				BC70D36C23D54E3A0086D345 /* CustomCell.swift */,
+				BC70D36A23D2CC5C0086D345 /* UpgradesTableView.swift */,
+			);
+			path = "Working on..";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,9 +186,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC70D30723C4FC060086D345 /* GameViewController.swift in Sources */,
+				BC70D36923D2B7A20086D345 /* Upgrade.swift in Sources */,
+				BC70D36B23D2CC5C0086D345 /* UpgradesTableView.swift in Sources */,
 				BC70D36723CD306E0086D345 /* TreeClicker.xcdatamodeld in Sources */,
 				BC70D34123CA57080086D345 /* CoinDealer.swift in Sources */,
 				BC70D33D23C7A4A80086D345 /* GameScene.swift in Sources */,
+				BC70D36D23D54E3A0086D345 /* CustomCell.swift in Sources */,
 				BC70D2FF23C4FC060086D345 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

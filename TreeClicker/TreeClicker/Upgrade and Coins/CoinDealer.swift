@@ -18,4 +18,16 @@ class CoinDealer: SKSpriteNode{
         return soma
     }
     
+    func buyUpgrades(valor: inout Int, compra: Int) -> Int{
+        if valor >= compra{
+            valor = valor - compra
+            print("Tem dinheiro!")
+            return valor
+        }
+        else{
+            print("Não tem dinheiro!")
+            return valor
+        }
+    }
+    
 }
