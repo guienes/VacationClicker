@@ -17,16 +17,35 @@ class GameScene: SKScene {
     let backgroundScene = SKSpriteNode(imageNamed: "Scenario")
     let coinMoney = SKSpriteNode(imageNamed: "CoinMoney")
     let upgradeIcon = SKSpriteNode(imageNamed: "UpgradeIcon")
-    private var label : SKLabelNode?
-    private var spinnyNode : SKShapeNode?
+    let engrenagemIcon = SKSpriteNode(imageNamed: "Engrenagem")
+    var soonSKLabel = SKLabelNode(text: "Em breve!")
+    
+    var cheecker = 0
+    
+    lazy var sumPrice = Upgrades().fingerPriceValue
+    
+    //Evita dar crash
+    var upgradeScreenOn = 0
+    var SoundBool = false
+    
+    
     
     // cria a tela de upgrades em si
     lazy var upgradeTela: [SKSpriteNode] = Upgrades().upgradeScreenAppear()
     
-    // pega os valores dos produtos da loja de upgrades
-    lazy var upgradeValues: [SKLabelNode] = Upgrades().upgradeValues()
+    // cria a tela de settings
+    lazy var settingsTela: [SKSpriteNode] = Settings().settingsScreenAppear()
     
+    // pega os valores dos produtos da loja de upgrades
+    lazy var upgradeValues: [SKLabelNode] = Upgrades().upgradeValues(upgradesPurchased: numberUpgradesFinger)
+    
+    //seta o numero de upgrades que foram comprados
+    var numberUpgradesFinger:Int = 0
+    lazy var boostValueFinger = Upgrades().fingerBoostValue
     var checker: Bool = false
+    
+    //musica do jogo
+    let backgroundMusic = SKAudioNode(fileNamed: "MusicGame.mp3")
     
     /**
      Chama a função loadScene() para que todos os SKSpriteNodes sejam inicializados.
@@ -37,6 +56,7 @@ class GameScene: SKScene {
 //        self.scene?.view?.addSubview(gameTableView)
 //        self.gameTableView.estimatedRowHeight = 20
 //        gameTableView.reloadData()
+        self.addChild(backgroundMusic)
         loadScene()
     
         }
@@ -45,6 +65,15 @@ class GameScene: SKScene {
     Carrega todos os SKSpriteNodes na tela, em seus respectivos lugares (cria a cena).
     */
     func loadScene(){
+        
+        soonSKLabel.zPosition = 107
+        soonSKLabel.fontName = "Helvetica"
+        soonSKLabel.fontColor = .black
+        soonSKLabel.fontSize = 12
+        soonSKLabel.horizontalAlignmentMode = .center
+        soonSKLabel.verticalAlignmentMode = .center
+        soonSKLabel.position = CGPoint(x: frame.size.width/1.08, y: frame.size.height/2.23)
+        addChild(soonSKLabel)
         
         textCoins.text = "\(score)"
         textCoins.zPosition = 100
@@ -67,6 +96,10 @@ class GameScene: SKScene {
         upgradeIcon.zPosition = 105
         upgradeIcon.position = CGPoint(x: frame.size.width/1.05 , y: frame.size.height/1.80)
         addChild(upgradeIcon)
+        
+        engrenagemIcon.zPosition = 106
+        engrenagemIcon.position = CGPoint(x: frame.size.width/1.05, y: frame.size.height/2.08)
+        addChild(engrenagemIcon)
         
     }
     
@@ -92,29 +125,150 @@ class GameScene: SKScene {
         //cicou no icone de upgrades
         if upgradeIcon.contains(touchLocation) {
             checker = true
-            for i in 0 ..< upgradeTela.count{
-                // Apresenta tela de upgrades
-                addChild(upgradeTela[i])
-            }
             
-            for i in 0 ..< upgradeValues.count{
-                addChild(upgradeValues[i])
+            if upgradeScreenOn == 1{
+                // Serve para evitar crash ao adicionar SKNodes onde já existem.
             }
-//            if (upgradeValues.last?.contains(touchLocation) ?? nil)!{
-//                print("Funciona.. HMM...")
-//            }
+            else{
+                upgradeScreenOn += 1
+                // posiciona na tela
+                upgradeTela[0].position = CGPoint(x: frame.size.width/2, y: frame.size.height/2)
+                
+                upgradeTela[1].position = CGPoint(x: frame.size.width/2, y: frame.size.height/1.71)
+                
+                for i in 0 ..< upgradeTela.count{
+                    // Apresenta tela de upgrades
+                    addChild(upgradeTela[i])
+                }
+                
+                upgradeValues[0].position = CGPoint(x: frame.size.width/3.1, y: frame.size.height/1.75)
+                
+                upgradeValues[1].position = CGPoint(x: frame.size.width/1.37, y: frame.size.height/1.69)
+                
+                upgradeValues[2].position = CGPoint(x: frame.size.width/1.33, y: frame.size.height/1.76)
+                
+                for i in 0 ..< upgradeValues.count{
+                    addChild(upgradeValues[i])
+                }
+            }
         }
         
+        /**
+        Reconhece quando houve um toque no SKSpriteNode de "engrenagemIcon" e realiza uma ação.
+        
+        Se houver um toque, ele irá abrir uma tela de settings.
+         
+        Se o usuario clicar para mutar a musica, a classe Settings() é acionada, responsavel por gerar toda a tela de Settings.
+        
+        Retorna:
+        Um array de SKSpriteNodes, que serao mostrados na tela do usuario.
+        
+        */
+        
+        // Se a engranegem for selecionada (Settings)
+//        if engrenagemIcon.contains(touchLocation){
+//            if upgradeScreenOn == 1 {
+//                // faz nada (evita crash)
+//            } else {
+//                upgradeScreenOn += 1
+//                checker = true
+//                settingsTela[0].position = CGPoint(x: frame.size.width/2, y: frame.size.height/1.8)
+//                addChild(settingsTela[0])
+//                if SoundBool == false{
+//                    settingsTela[2].position = CGPoint(x: frame.size.width/1.95, y: frame.size.height/1.85)
+//                    addChild(settingsTela[2])
+//                }
+//            }
+//        }
+//
+//        if settingsTela[2].contains(touchLocation){
+//            backgroundMusic.run(SKAction.stop())
+//        }
+//
+//        // remove a tela de settings
+//        if checker == true && textCoins.contains(touchLocation){
+//            settingsTela[0].removeFromParent()
+//            settingsTela[2].removeFromParent()
+//            upgradeScreenOn = 0
+//
+//        }
+        
+        
+        
+        
+        
+        
+        
+        /**
+        Reconhece quando houve um toque no SKSpriteNode de compra.
+        
+        Irá converter o valor do upgrade de String para Int.
+        É chamada a função buyUpgrades da classe CoinDealer().
+        
+        CoinDealer().coinReceiver(x: &self.score)
+        
+        Parâmetros:
+        valor: Recebe o valora atual de pontos que você têm.
+        compra: Recebe o valor que custa o upgrade.
+        
+        Retorna:
+        Caso seja possivel a compra, retorna para score o valor - o custo do upgrade.
+        
+        */
+        
+        //Quando você tenta comprar um upgrade
         if (upgradeValues.last?.contains(touchLocation))!{
-            var priceConverter = Int((upgradeValues[1].text ?? nil)!)
             
-            var upgradeChecker = CoinDealer().buyUpgrades(valor: &score, compra: priceConverter ?? 0)
-                
+            // Converte o valor de string pra Inteiro
+            var priceConverterFinger = Int((upgradeValues[1].text ?? nil)!)
+            
+            // Checa se você tem dinheiro suficiente pra comprar o upgrade.
+            var actualScore = score
+            var upgradeChecker = CoinDealer().buyUpgrades(valor: &actualScore, compra: priceConverterFinger ?? 0)
+            
+             // Checa se o resultado devolvido para upgradeChecker bate com o score, se bater é por que a compra não foi efetuada.
+            if score >= priceConverterFinger ?? 0{
+//                cheecker += 1
                 score = upgradeChecker
-            textCoins.text = "\(score)"
+                textCoins.text = "\(score)"
+                sumPrice = sumPrice + 100
+                upgradeValues[1].text = String(sumPrice)
+                
+                boostValueFinger += 2
+                upgradeValues[0].text = String(boostValueFinger)
+                cheecker += 1
+            } else {
+                ""
+            }
             
+            // EDITAR DAQUI PRA BAIXO PRA ARRUMAR MUDAR O VALOR NA HORA DA COMPRA!
+            
+            //Mostra quantos upgrades foram comprados
+            
+//            cheecker = Upgrades().receiveUpgradeCounter()
+            
+            
+//            score = upgradeChecker
+//            textCoins.text = "\(score)"
+            
+            //se ja foram comprados 1 ou mais upgrades..
+            if cheecker >= 1{
+                
+                // Aumenta o valor do preço do upgrade
+                
+                
+                
+            }
+//            var teste =
+            
+            
+            // ===================================================================
         }
+        
+        //remove a tela de upgrades!
+        
         if checker == true && textCoins.contains(touchLocation){
+            upgradeScreenOn = 0
             for i in 0 ..< 2{
                 upgradeTela[i].removeFromParent()
             }
@@ -128,62 +282,14 @@ class GameScene: SKScene {
             
         else{
             if checker == true{
-                "Faz nada"
+                //nao permite que conte clicks fora durante compras de upgrade.
             }
             else{
-                var coins = CoinDealer().coinReceiver(x: &self.score)
+                var coins = CoinDealer().coinReceiver(score: &score, purchases: boostValueFinger, upgradesBought: cheecker )
                 score = coins
                 textCoins.text = "\(score)"
             }
         }
       
     }
-    
-    
-        
-//
-//    func touchDown(atPoint pos : CGPoint) {
-//        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-//            n.position = pos
-//            n.strokeColor = SKColor.green
-//            self.addChild(n)
-//        }
-//    }
-//
-//    func touchMoved(toPoint pos : CGPoint) {
-//        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-//            n.position = pos
-//            n.strokeColor = SKColor.blue
-//            self.addChild(n)
-//        }
-//    }
-//
-//    func touchUp(atPoint pos : CGPoint) {
-//        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-//            n.position = pos
-//            n.strokeColor = SKColor.red
-//            self.addChild(n)
-//        }
-//    }
-//
-//
-//        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
-//    }
-//
-//    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
-//    }
-//
-//    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-//    }
-//
-//    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-//    }
-//
-//
-//    override func update(_ currentTime: TimeInterval) {
-//        // Called before each frame is rendered
-//    }
 }
