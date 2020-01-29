@@ -18,11 +18,11 @@ class GameScene: SKScene {
     let coinMoney = SKSpriteNode(imageNamed: "CoinMoney")
     let upgradeIcon = SKSpriteNode(imageNamed: "UpgradeIcon")
     let engrenagemIcon = SKSpriteNode(imageNamed: "Engrenagem")
-    var soonSKLabel = SKLabelNode(text: "Em breve!")
     
     var cheecker = 0
     
     lazy var sumPrice = Upgrades().fingerPriceValue
+    lazy var sumPriceFarmer = Upgrades().farmerPriceValue
     
     //Evita dar crash
     var upgradeScreenOn = 0
@@ -37,11 +37,17 @@ class GameScene: SKScene {
     lazy var settingsTela: [SKSpriteNode] = Settings().settingsScreenAppear()
     
     // pega os valores dos produtos da loja de upgrades
-    lazy var upgradeValues: [SKLabelNode] = Upgrades().upgradeValues(upgradesPurchased: numberUpgradesFinger)
+    lazy var upgradeValuesFinger: [SKLabelNode] = Upgrades().upgradeValues(upgradesPurchased: numberUpgradesFinger)
+    
+    lazy var upgradeValuesFarmer: [SKLabelNode] = Upgrades().upgradeValuesFarmer(upgradesPurchased: numberUpgradesFarmer)
     
     //seta o numero de upgrades que foram comprados
     var numberUpgradesFinger:Int = 0
+    var numberUpgradesFarmer:Int = 0
+    
     lazy var boostValueFinger = Upgrades().fingerBoostValue
+    lazy var boostValuefarmer = Upgrades().farmerBoostValue
+    
     var checker: Bool = false
     
     //musica do jogo
@@ -65,15 +71,6 @@ class GameScene: SKScene {
     Carrega todos os SKSpriteNodes na tela, em seus respectivos lugares (cria a cena).
     */
     func loadScene(){
-        
-        soonSKLabel.zPosition = 107
-        soonSKLabel.fontName = "Helvetica"
-        soonSKLabel.fontColor = .black
-        soonSKLabel.fontSize = 12
-        soonSKLabel.horizontalAlignmentMode = .center
-        soonSKLabel.verticalAlignmentMode = .center
-        soonSKLabel.position = CGPoint(x: frame.size.width/1.08, y: frame.size.height/2.23)
-        addChild(soonSKLabel)
         
         textCoins.text = "\(score)"
         textCoins.zPosition = 100
@@ -124,32 +121,65 @@ class GameScene: SKScene {
 
         //cicou no icone de upgrades
         if upgradeIcon.contains(touchLocation) {
+            var teste = cheecker
             checker = true
             
             if upgradeScreenOn == 1{
                 // Serve para evitar crash ao adicionar SKNodes onde já existem.
             }
             else{
+                //seta posicao na tela dos elementos
+                
                 upgradeScreenOn += 1
                 // posiciona na tela
                 upgradeTela[0].position = CGPoint(x: frame.size.width/2, y: frame.size.height/2)
                 
                 upgradeTela[1].position = CGPoint(x: frame.size.width/2, y: frame.size.height/1.71)
                 
-                for i in 0 ..< upgradeTela.count{
+                upgradeTela[2].position = CGPoint(x: frame.size.width/1.98, y: frame.size.height/1.94)
+
+                upgradeValuesFinger[0].position = CGPoint(x: frame.size.width/3.1, y: frame.size.height/1.75)
+                               
+                upgradeValuesFinger[1].position = CGPoint(x: frame.size.width/1.37, y: frame.size.height/1.69)
+                               
+                upgradeValuesFinger[2].position = CGPoint(x: frame.size.width/1.33, y: frame.size.height/1.76)
+                
+                upgradeValuesFarmer[0].position = CGPoint(x: frame.size.width/3.05, y: frame.size.height/1.99)
+                               
+                upgradeValuesFarmer[1].position = CGPoint(x: frame.size.width/1.37, y: frame.size.height/1.92)
+                               
+                upgradeValuesFarmer[2].position = CGPoint(x: frame.size.width/1.33, y: frame.size.height/2.01)
+                
+                if teste >= 1 {
+                    
+                   for i in 0 ..< upgradeTela.count{
+                       // Apresenta tela de upgrades
+                       addChild(upgradeTela[i])
+                   }
+                   
+                   for i in 0 ..< upgradeValuesFarmer.count{
+                       addChild(upgradeValuesFarmer[i])
+                   }
+                   
+                   for i in 0 ..< upgradeValuesFinger.count{
+                       addChild(upgradeValuesFinger[i])
+                   }
+                    
+                } else {
+                    
+                    for i in 0 ..< 2{
                     // Apresenta tela de upgrades
-                    addChild(upgradeTela[i])
+                        addChild(upgradeTela[i])
+                    }
+                                       
+                    for i in 0 ..< upgradeValuesFinger.count{
+                        addChild(upgradeValuesFinger[i])
+                    }
                 }
+                // se ja comprou um upgrade, aparece um novo.
                 
-                upgradeValues[0].position = CGPoint(x: frame.size.width/3.1, y: frame.size.height/1.75)
                 
-                upgradeValues[1].position = CGPoint(x: frame.size.width/1.37, y: frame.size.height/1.69)
-                
-                upgradeValues[2].position = CGPoint(x: frame.size.width/1.33, y: frame.size.height/1.76)
-                
-                for i in 0 ..< upgradeValues.count{
-                    addChild(upgradeValues[i])
-                }
+                    
             }
         }
         
@@ -217,65 +247,90 @@ class GameScene: SKScene {
         */
         
         //Quando você tenta comprar um upgrade
-        if (upgradeValues.last?.contains(touchLocation))!{
+        
+        if (upgradeValuesFinger.last?.contains(touchLocation))!{
             
             // Converte o valor de string pra Inteiro
-            var priceConverterFinger = Int((upgradeValues[1].text ?? nil)!)
+            var priceConverterFinger = Int((upgradeValuesFinger[1].text ?? nil)!)
             
             // Checa se você tem dinheiro suficiente pra comprar o upgrade.
             var actualScore = score
             var upgradeChecker = CoinDealer().buyUpgrades(valor: &actualScore, compra: priceConverterFinger ?? 0)
             
-             // Checa se o resultado devolvido para upgradeChecker bate com o score, se bater é por que a compra não foi efetuada.
+            
             if score >= priceConverterFinger ?? 0{
 //                cheecker += 1
                 score = upgradeChecker
                 textCoins.text = "\(score)"
-                sumPrice = sumPrice + 100
-                upgradeValues[1].text = String(sumPrice)
+                sumPrice = sumPrice + 140
+                upgradeValuesFinger[1].text = String(sumPrice)
                 
                 boostValueFinger += 2
-                upgradeValues[0].text = String(boostValueFinger)
+                upgradeValuesFinger[0].text = String(boostValueFinger)
                 cheecker += 1
             } else {
                 ""
             }
+        }
+        
+        // se clicar pra comprar o upgrade do farmer
+        
+        if (upgradeValuesFarmer.last?.contains(touchLocation))!{
+            // Converte o valor de string pra Inteiro
+            var priceConverterFarmer = Int((upgradeValuesFarmer[1].text ?? nil)!)
+            // Checa se você tem dinheiro suficiente pra comprar o upgrade.
+            var actualScore = score
+            var upgradeChecker = CoinDealer().buyUpgrades(valor: &actualScore, compra: priceConverterFarmer ?? 0)
             
-            // EDITAR DAQUI PRA BAIXO PRA ARRUMAR MUDAR O VALOR NA HORA DA COMPRA!
+             // Checa se o resultado devolvido para upgradeChecker bate com o score, se bater é por que a compra não foi efetuada.
             
-            //Mostra quantos upgrades foram comprados
-            
-//            cheecker = Upgrades().receiveUpgradeCounter()
-            
-            
-//            score = upgradeChecker
-//            textCoins.text = "\(score)"
-            
-            //se ja foram comprados 1 ou mais upgrades..
-            if cheecker >= 1{
+            if score >= priceConverterFarmer ?? 0{
+                score = upgradeChecker
+                textCoins.text = "\(score)"
+                sumPriceFarmer = sumPriceFarmer + 500
+                upgradeValuesFarmer[1].text = String(sumPriceFarmer)
                 
-                // Aumenta o valor do preço do upgrade
-                
-                
-                
+                boostValuefarmer += 5
+                upgradeValuesFarmer[0].text = String(boostValuefarmer)
+                cheecker += 1
+            } else {
+                // nao faz nada
             }
-//            var teste =
             
-            
-            // ===================================================================
         }
         
         //remove a tela de upgrades!
         
         if checker == true && textCoins.contains(touchLocation){
             upgradeScreenOn = 0
-            for i in 0 ..< 2{
+            var teste = cheecker
+           if teste >= 1 {
+                
+               for i in 0 ..< upgradeTela.count{
+                   // Apresenta tela de upgrades
                 upgradeTela[i].removeFromParent()
+               }
+               
+               for i in 0 ..< upgradeValuesFarmer.count{
+                   upgradeValuesFarmer[i].removeFromParent()
+               }
+               
+               for i in 0 ..< upgradeValuesFinger.count{
+                upgradeValuesFinger[i].removeFromParent()
+               }
+                
+            } else {
+            
+                for i in 0 ..< 2{
+                // Apresenta tela de upgrades
+                    upgradeTela[i].removeFromParent()
+                }
+                                   
+                for i in 0 ..< upgradeValuesFinger.count{
+                    upgradeValuesFinger[i].removeFromParent()
+                }
             }
             
-            for i in 0 ..< upgradeValues.count{
-                upgradeValues[i].removeFromParent()
-            }
             checker = false
         }
             
@@ -286,7 +341,13 @@ class GameScene: SKScene {
             }
             else{
                 var coins = CoinDealer().coinReceiver(score: &score, purchases: boostValueFinger, upgradesBought: cheecker )
-                score = coins
+                
+                
+                if boostValuefarmer > 1{
+                    score = coins + boostValuefarmer
+                } else {
+                    score = coins
+                }
                 textCoins.text = "\(score)"
             }
         }
