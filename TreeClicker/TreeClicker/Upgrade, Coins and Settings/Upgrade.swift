@@ -67,7 +67,7 @@ class Upgrades: GameScene{
             
             fingerBuy.text = "Comprar"
             fingerBuy.fontSize = 12
-            fingerBuy.fontColor = .red
+            fingerBuy.fontColor = .black
             fingerBuy.zPosition = 1000000000000000
 //            fingerBuy.position = CGPoint(x: 315, y: 515)
 
