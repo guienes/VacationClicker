@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC0391E923DF4F3D00E1446B /* MusicGame.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BC0391E823DF4F3D00E1446B /* MusicGame.mp3 */; };
+		BC0391EB23DF55E100E1446B /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0391EA23DF55E100E1446B /* Settings.swift */; };
 		BC70D2FF23C4FC060086D345 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC70D2FE23C4FC060086D345 /* AppDelegate.swift */; };
 		BC70D30723C4FC060086D345 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC70D30623C4FC060086D345 /* GameViewController.swift */; };
 		BC70D30A23C4FC060086D345 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC70D30823C4FC060086D345 /* Main.storyboard */; };
@@ -15,9 +17,14 @@
 		BC70D33D23C7A4A80086D345 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC70D33C23C7A4A80086D345 /* GameScene.swift */; };
 		BC70D34123CA57080086D345 /* CoinDealer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC70D34023CA57080086D345 /* CoinDealer.swift */; };
 		BC70D36723CD306E0086D345 /* TreeClicker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BC70D36523CD306E0086D345 /* TreeClicker.xcdatamodeld */; };
+		BC70D36923D2B7A20086D345 /* Upgrade.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC70D36823D2B7A20086D345 /* Upgrade.swift */; };
+		BC70D36B23D2CC5C0086D345 /* UpgradesTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC70D36A23D2CC5C0086D345 /* UpgradesTableView.swift */; };
+		BC70D36D23D54E3A0086D345 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC70D36C23D54E3A0086D345 /* CustomCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BC0391E823DF4F3D00E1446B /* MusicGame.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = MusicGame.mp3; sourceTree = "<group>"; };
+		BC0391EA23DF55E100E1446B /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		BC70D2FB23C4FC060086D345 /* TreeClicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TreeClicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC70D2FE23C4FC060086D345 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC70D30623C4FC060086D345 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -28,6 +35,9 @@
 		BC70D33C23C7A4A80086D345 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		BC70D34023CA57080086D345 /* CoinDealer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDealer.swift; sourceTree = "<group>"; };
 		BC70D36623CD306E0086D345 /* TreeClicker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TreeClicker.xcdatamodel; sourceTree = "<group>"; };
+		BC70D36823D2B7A20086D345 /* Upgrade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Upgrade.swift; sourceTree = "<group>"; };
+		BC70D36A23D2CC5C0086D345 /* UpgradesTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradesTableView.swift; sourceTree = "<group>"; };
+		BC70D36C23D54E3A0086D345 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +51,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BC0391E723DF4F2400E1446B /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				BC0391E823DF4F3D00E1446B /* MusicGame.mp3 */,
+			);
+			path = Music;
+			sourceTree = "<group>";
+		};
 		BC70D2F223C4FC060086D345 = {
 			isa = PBXGroup;
 			children = (
@@ -61,9 +79,11 @@
 			isa = PBXGroup;
 			children = (
 				BC70D33F23C7A6DA0086D345 /* Scenes */,
+				BC0391E723DF4F2400E1446B /* Music */,
 				BC70D33E23C7A6CE0086D345 /* ViewController */,
+				BC70D36E23D801B60086D345 /* Upgrade, Coins and Settings */,
+				BC70D36F23D801E70086D345 /* Working on.. */,
 				BC70D2FE23C4FC060086D345 /* AppDelegate.swift */,
-				BC70D34023CA57080086D345 /* CoinDealer.swift */,
 				BC70D30823C4FC060086D345 /* Main.storyboard */,
 				BC70D30B23C4FC0C0086D345 /* Assets.xcassets */,
 				BC70D30D23C4FC0C0086D345 /* LaunchScreen.storyboard */,
@@ -87,6 +107,25 @@
 				BC70D33C23C7A4A80086D345 /* GameScene.swift */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		BC70D36E23D801B60086D345 /* Upgrade, Coins and Settings */ = {
+			isa = PBXGroup;
+			children = (
+				BC70D36823D2B7A20086D345 /* Upgrade.swift */,
+				BC70D34023CA57080086D345 /* CoinDealer.swift */,
+				BC0391EA23DF55E100E1446B /* Settings.swift */,
+			);
+			path = "Upgrade, Coins and Settings";
+			sourceTree = "<group>";
+		};
+		BC70D36F23D801E70086D345 /* Working on.. */ = {
+			isa = PBXGroup;
+			children = (
+				BC70D36C23D54E3A0086D345 /* CustomCell.swift */,
+				BC70D36A23D2CC5C0086D345 /* UpgradesTableView.swift */,
+			);
+			path = "Working on..";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,6 +188,7 @@
 			files = (
 				BC70D30A23C4FC060086D345 /* Main.storyboard in Resources */,
 				BC70D30C23C4FC0C0086D345 /* Assets.xcassets in Resources */,
+				BC0391E923DF4F3D00E1446B /* MusicGame.mp3 in Resources */,
 				BC70D30F23C4FC0C0086D345 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -161,9 +201,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC70D30723C4FC060086D345 /* GameViewController.swift in Sources */,
+				BC70D36923D2B7A20086D345 /* Upgrade.swift in Sources */,
+				BC70D36B23D2CC5C0086D345 /* UpgradesTableView.swift in Sources */,
 				BC70D36723CD306E0086D345 /* TreeClicker.xcdatamodeld in Sources */,
 				BC70D34123CA57080086D345 /* CoinDealer.swift in Sources */,
 				BC70D33D23C7A4A80086D345 /* GameScene.swift in Sources */,
+				BC0391EB23DF55E100E1446B /* Settings.swift in Sources */,
+				BC70D36D23D54E3A0086D345 /* CustomCell.swift in Sources */,
 				BC70D2FF23C4FC060086D345 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -309,6 +353,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = V894BS73ZJ;
 				INFOPLIST_FILE = TreeClicker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -318,7 +363,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = br.developeracademy.TreeClicker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -327,6 +372,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = V894BS73ZJ;
 				INFOPLIST_FILE = TreeClicker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -336,7 +382,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = br.developeracademy.TreeClicker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
