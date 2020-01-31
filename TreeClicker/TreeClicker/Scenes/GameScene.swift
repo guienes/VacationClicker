@@ -29,6 +29,9 @@ class GameScene: SKScene {
     var SoundBool = false
     
     
+    var actionBackgroundTimer = SKAction.wait(forDuration: 5)
+    
+    
     
     // cria a tela de upgrades em si
     lazy var upgradeTela: [SKSpriteNode] = Upgrades().upgradeScreenAppear()
@@ -90,15 +93,22 @@ class GameScene: SKScene {
         addChild(coinMoney)
         
         upgradeIcon.name = "upgradeIcon"
-        upgradeIcon.zPosition = 105
+        upgradeIcon.zPosition = 10000000
         upgradeIcon.position = CGPoint(x: frame.size.width/1.05 , y: frame.size.height/1.80)
         addChild(upgradeIcon)
         
         engrenagemIcon.zPosition = 106
         engrenagemIcon.position = CGPoint(x: frame.size.width/1.05, y: frame.size.height/2.08)
-        addChild(engrenagemIcon)
+//        Ainda nao esta funcionando.
+//        addChild(engrenagemIcon)
+        
         
     }
+    
+    func waitSubBackground (){
+        self.addChild(upgradeTela[3])
+    }
+    
     
     /**
      Reconhece quando houve um toque no SKSpriteNode de "upgradeIcon" e realiza uma ação.
@@ -137,6 +147,9 @@ class GameScene: SKScene {
                 upgradeTela[1].position = CGPoint(x: frame.size.width/2, y: frame.size.height/1.71)
                 
                 upgradeTela[2].position = CGPoint(x: frame.size.width/1.98, y: frame.size.height/1.94)
+                
+                upgradeTela[3].position = CGPoint(x: frame.size.width/1.29, y: frame.size.height/1.45)
+                
 
                 upgradeValuesFinger[0].position = CGPoint(x: frame.size.width/3.1, y: frame.size.height/1.75)
                                
@@ -175,6 +188,10 @@ class GameScene: SKScene {
                     for i in 0 ..< upgradeValuesFinger.count{
                         addChild(upgradeValuesFinger[i])
                     }
+                    
+                    addChild(upgradeTela[3])
+                    
+                    
                 }
                 // se ja comprou um upgrade, aparece um novo.
                 
@@ -301,10 +318,10 @@ class GameScene: SKScene {
         
         //remove a tela de upgrades!
         
-        if checker == true && textCoins.contains(touchLocation){
+        if checker == true && upgradeTela[3].contains(touchLocation) || textCoins.contains(touchLocation){
             upgradeScreenOn = 0
-            var teste = cheecker
-           if teste >= 1 {
+            var cheeckerHolder = cheecker
+           if cheeckerHolder >= 1 {
                 
                for i in 0 ..< upgradeTela.count{
                    // Apresenta tela de upgrades
@@ -329,6 +346,8 @@ class GameScene: SKScene {
                 for i in 0 ..< upgradeValuesFinger.count{
                     upgradeValuesFinger[i].removeFromParent()
                 }
+            
+                upgradeTela[3].removeFromParent()
             }
             
             checker = false

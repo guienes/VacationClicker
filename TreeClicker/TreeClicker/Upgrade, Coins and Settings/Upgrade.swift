@@ -12,6 +12,7 @@ import SpriteKit
 class Upgrades: GameScene{
     
     var upgradeBackground = SKSpriteNode(imageNamed: "UpgradesBackground")
+    var upgradeSubBackground = SKSpriteNode(imageNamed: "CloseUpgrades")
     
     var fingerUpgrade = SKSpriteNode(imageNamed: "Upgrade1")
     
@@ -37,7 +38,7 @@ class Upgrades: GameScene{
     var counterUpgradesFarmer = 0
     
     
-    lazy var arraySKNodes:[SKSpriteNode] = [upgradeBackground,fingerUpgrade,farmerUpgrade]
+    lazy var arraySKNodes:[SKSpriteNode] = [upgradeBackground,fingerUpgrade,farmerUpgrade,upgradeSubBackground]
     
 
     
@@ -51,6 +52,8 @@ class Upgrades: GameScene{
         
 //        upgradeBackground.position = CGPoint(x: 210, y: 460)
         upgradeBackground.zPosition = 100000
+        
+        upgradeSubBackground.zPosition = 10000000
         
 //        fingerUpgrade.position = CGPoint(x: 215, y: 530)
         fingerUpgrade.zPosition = 1000000
