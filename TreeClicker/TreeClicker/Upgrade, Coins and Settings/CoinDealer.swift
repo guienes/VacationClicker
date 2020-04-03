@@ -24,8 +24,6 @@ class CoinDealer: SKSpriteNode{
         return soma
     }
     
-    
-    
     func buyUpgrades(valor: inout Int, compra: Int) -> Int{
         if valor >= compra{
             var upgradeSum = Upgrades().receiveUpgradeCounter()

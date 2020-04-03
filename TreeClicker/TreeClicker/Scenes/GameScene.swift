@@ -12,7 +12,11 @@ import CoreData
 
 class GameScene: SKScene {
 //    var gameTableView = UpgradesTableView()
-    var score: Int = 0
+    var score = UserDefaults.standard.integer(forKey: "Tap")
+//    defaults.setValue(score, forKey: "Integer")
+//    score = defaults.integer(forKey: "Integer")
+    
+  //  var score: Int = 0
     var textCoins = SKLabelNode(fontNamed: "Helvetica")
     let backgroundScene = SKSpriteNode(imageNamed: "Scenario")
     let coinMoney = SKSpriteNode(imageNamed: "CoinMoney")
@@ -28,9 +32,7 @@ class GameScene: SKScene {
     var upgradeScreenOn = 0
     var SoundBool = false
     
-    
     var actionBackgroundTimer = SKAction.wait(forDuration: 5)
-    
     
     
     // cria a tela de upgrades em si
@@ -60,11 +62,7 @@ class GameScene: SKScene {
      Chama a função loadScene() para que todos os SKSpriteNodes sejam inicializados.
      */
     override func didMove(to view: SKView) {
-//        gameTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-//        gameTableView.frame=CGRect(x:50,y:300,width:280,height:200)
-//        self.scene?.view?.addSubview(gameTableView)
-//        self.gameTableView.estimatedRowHeight = 20
-//        gameTableView.reloadData()
+        
         self.addChild(backgroundMusic)
         loadScene()
     
@@ -99,10 +97,7 @@ class GameScene: SKScene {
         
         engrenagemIcon.zPosition = 106
         engrenagemIcon.position = CGPoint(x: frame.size.width/1.05, y: frame.size.height/2.08)
-//        Ainda nao esta funcionando.
-//        addChild(engrenagemIcon)
-        
-        
+
     }
     
     func waitSubBackground (){
@@ -191,60 +186,10 @@ class GameScene: SKScene {
                     
                     addChild(upgradeTela[3])
                     
-                    
                 }
-                // se ja comprou um upgrade, aparece um novo.
-                
-                
-                    
             }
         }
-        
-        /**
-        Reconhece quando houve um toque no SKSpriteNode de "engrenagemIcon" e realiza uma ação.
-        
-        Se houver um toque, ele irá abrir uma tela de settings.
-         
-        Se o usuario clicar para mutar a musica, a classe Settings() é acionada, responsavel por gerar toda a tela de Settings.
-        
-        Retorna:
-        Um array de SKSpriteNodes, que serao mostrados na tela do usuario.
-        
-        */
-        
-        // Se a engranegem for selecionada (Settings)
-//        if engrenagemIcon.contains(touchLocation){
-//            if upgradeScreenOn == 1 {
-//                // faz nada (evita crash)
-//            } else {
-//                upgradeScreenOn += 1
-//                checker = true
-//                settingsTela[0].position = CGPoint(x: frame.size.width/2, y: frame.size.height/1.8)
-//                addChild(settingsTela[0])
-//                if SoundBool == false{
-//                    settingsTela[2].position = CGPoint(x: frame.size.width/1.95, y: frame.size.height/1.85)
-//                    addChild(settingsTela[2])
-//                }
-//            }
-//        }
-//
-//        if settingsTela[2].contains(touchLocation){
-//            backgroundMusic.run(SKAction.stop())
-//        }
-//
-//        // remove a tela de settings
-//        if checker == true && textCoins.contains(touchLocation){
-//            settingsTela[0].removeFromParent()
-//            settingsTela[2].removeFromParent()
-//            upgradeScreenOn = 0
-//
-//        }
-        
-        
-        
-        
-        
-        
+       
         
         /**
         Reconhece quando houve um toque no SKSpriteNode de compra.
@@ -289,7 +234,6 @@ class GameScene: SKScene {
                 ""
             }
         }
-        
         // se clicar pra comprar o upgrade do farmer
         
         if (upgradeValuesFarmer.last?.contains(touchLocation))!{
@@ -298,8 +242,6 @@ class GameScene: SKScene {
             // Checa se você tem dinheiro suficiente pra comprar o upgrade.
             var actualScore = score
             var upgradeChecker = CoinDealer().buyUpgrades(valor: &actualScore, compra: priceConverterFarmer ?? 0)
-            
-             // Checa se o resultado devolvido para upgradeChecker bate com o score, se bater é por que a compra não foi efetuada.
             
             if score >= priceConverterFarmer ?? 0{
                 score = upgradeChecker
@@ -353,23 +295,23 @@ class GameScene: SKScene {
             checker = false
         }
             
-            
         else{
             if checker == true{
                 //nao permite que conte clicks fora durante compras de upgrade.
             }
             else{
-                var coins = CoinDealer().coinReceiver(score: &score, purchases: boostValueFinger, upgradesBought: cheecker )
-                
+                var coins = CoinDealer().coinReceiver(score: &score, purchases: boostValueFinger, upgradesBought: cheecker)
                 
                 if boostValuefarmer > 1{
                     score = coins + boostValuefarmer
                 } else {
                     score = coins
                 }
+                UserDefaults.standard.set(score, forKey: "Tap")
                 textCoins.text = "\(score)"
             }
         }
       
     }
+    
 }

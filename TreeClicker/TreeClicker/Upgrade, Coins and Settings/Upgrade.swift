@@ -8,6 +8,7 @@
 
 import Foundation
 import SpriteKit
+import CoreData
 
 class Upgrades: GameScene{
     
@@ -158,4 +159,5 @@ class Upgrades: GameScene{
                 return arrayPricesFarmerSKLabelNode
             }
         }
+    
 }
